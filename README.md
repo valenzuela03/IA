@@ -5,5 +5,5 @@
 
 
 ### PROFESOR:
-### - Zuriel Darhan Mora Felix
+### - Zuriel Dathan Mora Felix
 
