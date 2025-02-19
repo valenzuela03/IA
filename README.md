@@ -7,6 +7,7 @@
 ### PROFESOR:
 ### - Zuriel Dathan Mora Felix
 
+
 #### TAREAS:
 #### - Arbol Binario
 #### - Resumen y presentacion sobre la historia de la IA
