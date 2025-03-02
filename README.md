@@ -13,4 +13,4 @@
 #### - Resumen y presentacion sobre la historia de la IA
 #### - Investigacion sobre los sistemas de recomendacion y que herramientas usa AWS y Google gsp
 #### - Investigacion y exposicion sobre los Agentes Deliberativos y ejemplos
-#### - Codigo para resolver Puzzle8
+#### - Codigo para resolver Puzzle8 usando metodo A*
