@@ -1,5 +1,5 @@
-import random
 import heapq
+import time
 
 def heuristica(puzzle, goal):
     distancia = 0
@@ -25,7 +25,6 @@ def busca_estrella(start, goal):
             if str(siguiente_nodo.puzzle) not in visitado:
                 heapq.heappush(cabeza, siguiente_nodo)
     return None
-
 
 class Nodo:
     def __init__(self, puzzle, movimiento, profundidad, heuristica, anterior):
@@ -89,6 +88,7 @@ class Nodo:
 
 
 def main():
+    tiempo_inicial = time.time()
     puzzle = [[6, 3, 1], 
               [5, 0, 8], 
               [2, 4, 7]]
@@ -113,6 +113,9 @@ def main():
     else:
         print('No se encontro solucion')
 
+    tiempo_final = time.time()
+    tiempo_ejecucion = tiempo_final - tiempo_inicial
+    print(f'Tiempo de ejecucion: {tiempo_ejecucion} segundos')
 
 if __name__ == '__main__':
     main()
