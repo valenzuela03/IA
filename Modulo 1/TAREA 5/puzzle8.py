@@ -14,16 +14,16 @@ def heuristica(puzzle, goal):
 
 def busca_estrella(start, goal):
     visitado = set()
-    cabeza = []
-    heapq.heappush(cabeza, start)
-    while cabeza:
-        actual = heapq.heappop(cabeza)
+    cola = []
+    heapq.heappush(cola, start)
+    while cola:
+        actual = heapq.heappop(cola)
         if actual.puzzle == goal.puzzle:
             return actual
         visitado.add(str(actual.puzzle))
         for siguiente_nodo in actual.encuentra_siguiente_nodo():
             if str(siguiente_nodo.puzzle) not in visitado:
-                heapq.heappush(cabeza, siguiente_nodo)
+                heapq.heappush(cola, siguiente_nodo)
     return None
 
 class Nodo:
@@ -89,9 +89,9 @@ class Nodo:
 
 def main():
     tiempo_inicial = time.time()
-    puzzle = [[6, 3, 1], 
-              [5, 0, 8], 
-              [2, 4, 7]]
+    puzzle = [[1, 0, 3], 
+              [4, 8, 7], 
+              [2, 6, 5]]
     start = Nodo(puzzle, '', 0, 0, None)
     goal = Nodo([[1, 2, 3], 
                  [4, 5, 6], 
