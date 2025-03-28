@@ -1,0 +1,1 @@
+### En esta tarea hicimos un proyecto de detector de spam utilizando un .csv al cual le tuvimos que hacer una limpieza 
