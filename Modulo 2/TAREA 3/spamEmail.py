@@ -12,13 +12,13 @@ dataset = pd.read_csv("/Users/cesar/Documents/TEC DE CULIACAN/8 SEMESTRE TEC/IA/
 
 # Función para limpiar correos
 def limpiar_texto(texto, stop_words):
-    # Convertir a minúsculas y eliminar caracteres no alfanuméricos 
+    # Quita minusculas, números y caracteres especiales y elimina stopwords
     texto = texto.lower()
     texto = ''.join([c if c.isalnum() or c.isspace() else ' ' for c in texto])
     return ' '.join(word for word in texto.split() if word not in stop_words)
 
 # Preparar los datos aplicando limpieza de texto
-stop_words = set(stopwords.words('spanish')).union(stopwords.words('english'))
+stop_words = set(stopwords.words('english'))
 ds_clean = dataset.drop_duplicates(subset="text").copy()
 ds_clean['text'] = ds_clean['text'].apply(lambda x: limpiar_texto(x, stop_words))
 
@@ -38,10 +38,11 @@ p_spam = np.mean(y_train)
 p_no_spam = 1 - p_spam
 
 # Calcular la probabilidad de cada palabra en el vocabulario dado spam o no spam
-# Utilizamos Laplace smoothing (sumando +1) para evitar probabilidades nulas
 x_train_array = x_train_count.toarray()
+# Total de palabras en spam(1) y no spam(0)
 total_spam = x_train_array[y_train == 1].sum()
 total_no_spam = x_train_array[y_train == 0].sum()
+# Formula de bayes, todas las palabras entre la cantidad de palabras spam y no spam
 p_palabra_dado_spam = (x_train_array[y_train == 1].sum(axis=0) + 1) / (total_spam + len(vectorizer.get_feature_names_out()))
 p_palabra_dado_no_spam = (x_train_array[y_train == 0].sum(axis=0) + 1) / (total_no_spam + len(vectorizer.get_feature_names_out()))
 
@@ -54,17 +55,18 @@ def predecir(email):
     log_prob_no_spam = np.log(p_no_spam) + np.sum(email_vector * np.log(p_palabra_dado_no_spam))
     return 1 if log_prob_spam > log_prob_no_spam else 0
 
-# Implementación con MultinomialNB de sklearn para Bayes
-# Crear y entrenar el modelo de Naive Bayes de sklearn
-modelo_sklearn = MultinomialNB()
-modelo_sklearn.fit(x_train_count, y_train)
+# Evaluación del modelo
+# Conn el conjunto de prueba
+y_pred = [predecir(email) for email in x_test]
+accuracy = np.mean(y_pred == y_test)
+print(f"Precisión del modelo: {accuracy * 100:.2f}%")
 
 #Creacion de interfaz
 def crear_interfaz():
     def verificar_spam():
         asunto = entrada_asunto.get()
         if not asunto.strip():
-            messagebox.showwarning("Advertencia", "Por favor ingresa un asunto para verificar")
+            messagebox.showwarning("Por favor ingresa un asunto para verificar")
             return
         
         resultado = predecir(asunto)
@@ -92,7 +94,7 @@ def crear_interfaz():
     titulo = ttk.Label(marco, text="Clasificador de Correos Spam", font=('Arial', 14, 'bold'))
     titulo.pack(pady=10)
     
-    instrucciones = ttk.Label(marco, text="Ingresa el asunto del correo electrónico para verificar si es spam:", wraplength=400)
+    instrucciones = ttk.Label(marco, text="Ingresa el correo electrónico para verificar si es spam:", wraplength=400)
     instrucciones.pack(pady=10)
     
     entrada_asunto = ttk.Entry(marco, width=50, font=('Arial', 10))
