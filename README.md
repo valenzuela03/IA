@@ -18,3 +18,7 @@
 
 ### MODULO 2
 #### - Paradigmas de IA y Aprendizaje automatico
+#### - Detector de spam
+
+### MODULO 3
+#### - Planteamiento de un problema a resolver con un sistema experto
