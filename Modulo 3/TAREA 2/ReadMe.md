@@ -1,0 +1,1 @@
+### Tenemos el documento de word donde se encuentran las reglas de cada enfermedad en PROLOG, tambien esta nuestro diagrama par las enfermedades

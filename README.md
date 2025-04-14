@@ -22,3 +22,4 @@
 
 ### MODULO 3
 #### - Planteamiento de un problema a resolver con un sistema experto
+#### - Reglas y diagrama de nuestro sistema experto
