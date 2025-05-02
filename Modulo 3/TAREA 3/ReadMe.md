@@ -1,0 +1,1 @@
+### Aqui hicimos los hechos y reglas de las enfermedades y sus sintomas
