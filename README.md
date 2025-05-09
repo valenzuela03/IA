@@ -24,3 +24,4 @@
 #### - Planteamiento de un problema a resolver con un sistema experto
 #### - Reglas y diagrama de nuestro sistema experto
 #### - Hechos y reglas matematicas
+#### - Sistema Experto
